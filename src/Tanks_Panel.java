@@ -16,7 +16,7 @@ public class Tanks_Panel extends JPanel {
     private ArrayList<Shells> p1Shells, p2Shells;
     private int shellDelayP1, shellCounterP1, shellDelayP2, shellCounterP2;
     private int p1Lives, p2Lives;
-    private Image zero, one, two, Flag;
+    private Image zero, one, two, Flag, three;
     private boolean background;
 
 
@@ -35,6 +35,7 @@ public class Tanks_Panel extends JPanel {
             one = ImageIO.read(new File("./res/1.png"));
             two = ImageIO.read(new File("./res/2.png"));
             Flag = ImageIO.read(new File("./res/Flag.png"));
+            three = ImageIO.read(new File("./res/3.png"));
         }
         catch(Exception e){e.printStackTrace();}
         //}
@@ -43,7 +44,7 @@ public class Tanks_Panel extends JPanel {
     public void setupGame(){
         Sounds.OverThere.stop();
         Sounds.Erika.stop();
-//        Sounds.Anthem.stop();
+        Sounds.Anthem.stop();
 
         setupWalls();
 
@@ -211,8 +212,9 @@ public class Tanks_Panel extends JPanel {
                 }
                 else if(e.getKeyCode() == KeyEvent.VK_U){
                     background = true;
-//                    p1Tank = new Tank(p1Tank.getX(), p1Tank.getY(), p1Tank.getAngle(), three);
-//                    Sounds.Anthem.play();
+                    p1Tank = new Tank((int)p1Tank.getX(), (int)p1Tank.getY(), (int)p1Tank.getAngle(), three);
+                    shellDelayP1 = 1;
+                    Sounds.Anthem.play();
                 }
                 else{
                     p1Tank.pressedP1(e.getKeyCode());
@@ -240,7 +242,7 @@ public class Tanks_Panel extends JPanel {
             g2.drawImage(zero, 0, 0, null);
         }
         else{
-            g2.drawImage(Flag, 0, 0, null);
+            g2.drawImage(Flag, -90, 0, null);
         }
 
         //draw tanks and shells
