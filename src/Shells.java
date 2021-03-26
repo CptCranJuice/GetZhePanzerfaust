@@ -18,7 +18,7 @@ public class Shells {
         this.y = y;
         w = 10;
         h = 10;
-        overallV = 10;
+        overallV = 15;
         this.theta = angle;
 
         hitBox = new Rectangle2D.Double(x, y, w, h);

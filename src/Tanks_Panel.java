@@ -16,7 +16,8 @@ public class Tanks_Panel extends JPanel {
     private ArrayList<Shells> p1Shells, p2Shells;
     private int shellDelayP1, shellCounterP1, shellDelayP2, shellCounterP2;
     private int p1Lives, p2Lives;
-    private Image zero, one, two;
+    private Image zero, one, two, Flag;
+    private boolean background;
 
 
     public Tanks_Panel(int width, int height){
@@ -33,6 +34,7 @@ public class Tanks_Panel extends JPanel {
             zero = ImageIO.read(new File("./res/0.png"));
             one = ImageIO.read(new File("./res/1.png"));
             two = ImageIO.read(new File("./res/2.png"));
+            Flag = ImageIO.read(new File("./res/Flag.png"));
         }
         catch(Exception e){e.printStackTrace();}
         //}
@@ -41,6 +43,7 @@ public class Tanks_Panel extends JPanel {
     public void setupGame(){
         Sounds.OverThere.stop();
         Sounds.Erika.stop();
+//        Sounds.Anthem.stop();
 
         setupWalls();
 
@@ -50,14 +53,16 @@ public class Tanks_Panel extends JPanel {
         p1Shells = new ArrayList<>();
         p2Shells = new ArrayList<>();
 
-        shellDelayP1 = 60;
+        shellDelayP1 = 90;
         shellCounterP1 = shellDelayP1;
 
-        shellDelayP2 = 60;
+        shellDelayP2 = 90;
         shellCounterP2 = shellDelayP2;
 
         p1Lives = 3;
         p2Lives = 3;
+
+        background = false;
     }
 
     public void setupWalls(){
@@ -204,6 +209,11 @@ public class Tanks_Panel extends JPanel {
                 else if(e.getKeyCode() == KeyEvent.VK_N){
                     setupGame();
                 }
+                else if(e.getKeyCode() == KeyEvent.VK_U){
+                    background = true;
+//                    p1Tank = new Tank(p1Tank.getX(), p1Tank.getY(), p1Tank.getAngle(), three);
+//                    Sounds.Anthem.play();
+                }
                 else{
                     p1Tank.pressedP1(e.getKeyCode());
                     p2Tank.pressedP2(e.getKeyCode());
@@ -226,7 +236,12 @@ public class Tanks_Panel extends JPanel {
         Graphics2D g2 = (Graphics2D) g;
 
         //draw background first
-        g2.drawImage(zero, 0, 0, null);
+        if(!background) {
+            g2.drawImage(zero, 0, 0, null);
+        }
+        else{
+            g2.drawImage(Flag, 0, 0, null);
+        }
 
         //draw tanks and shells
         if(p1Lives > 0) {
