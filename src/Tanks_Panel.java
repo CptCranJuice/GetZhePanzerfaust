@@ -29,7 +29,6 @@ public class Tanks_Panel extends JPanel {
         timer = new Timer(1000 / 60, e -> update());
         timer.start();
 
-        //for(int i = 1; i < 4; i++){
         try{
             zero = ImageIO.read(new File("./res/0.png"));
             one = ImageIO.read(new File("./res/1.png"));
@@ -38,7 +37,6 @@ public class Tanks_Panel extends JPanel {
             three = ImageIO.read(new File("./res/3.png"));
         }
         catch(Exception e){e.printStackTrace();}
-        //}
     }
 
     public void setupGame(){
@@ -48,7 +46,7 @@ public class Tanks_Panel extends JPanel {
 
         setupWalls();
 
-        p1Tank = new Tank(10, 100, 0, one);
+        p1Tank = new Tank(25, 100, 0, one);
         p2Tank = new Tank(625, 615, 180, two);
 
         p1Shells = new ArrayList<>();
@@ -288,7 +286,7 @@ public class Tanks_Panel extends JPanel {
         }
         else{
             if(p1Lives <= 0){
-                g2.drawString( "P1 Lives: " + p1Lives, 25, 25);
+                g2.drawString( "P1 Lives: " + 0, 25, 25);
                 g2.drawString("P2 Lives: " + p2Lives, 25, 60);
 
                 g2.drawString("P2 Wins! Press N to start new game ", 150, 50);
@@ -296,7 +294,7 @@ public class Tanks_Panel extends JPanel {
             }
             else if(p2Lives <= 0){
                 g2.drawString( "P1 Lives: " + p1Lives, 25, 25);
-                g2.drawString("P2 Lives: " + p2Lives, 25, 60);
+                g2.drawString("P2 Lives: " + 0, 25, 60);
 
                 g2.drawString("P1 Wins! Press N to start new game ", 150, 50);
                 Sounds.OverThere.play();
