@@ -179,6 +179,13 @@ public class Tanks_Panel extends JPanel {
             }
         }
 
+        if(p1Lives <= 0){
+            Sounds.Erika.play();
+        }
+        else if(p2Lives <= 0){
+            Sounds.OverThere.play();
+        }
+
         repaint();
     }
 
@@ -290,14 +297,12 @@ public class Tanks_Panel extends JPanel {
                 g2.drawString("P2 Lives: " + p2Lives, 25, 60);
 
                 g2.drawString("P2 Wins! Press N to start new game ", 150, 50);
-                Sounds.Erika.play();
             }
             else if(p2Lives <= 0){
                 g2.drawString( "P1 Lives: " + p1Lives, 25, 25);
                 g2.drawString("P2 Lives: " + 0, 25, 60);
 
                 g2.drawString("P1 Wins! Press N to start new game ", 150, 50);
-                Sounds.OverThere.play();
             }
         }
 
